@@ -1,0 +1,129 @@
+                                                /* Autor:Hudson Melo 21/05/15;*/
+
+                                        /*Modificações
+                                        -legend (font-size , font-weight)
+                                        -btn-site (color , background-color)
+                                        Modais editaveis 1 a 5 ( width e height)*/
+
+
+.texto-banner{
+	position: absolute;
+	font-family:'Raleway', sans-serif;
+	color:white;
+	text-align: center;
+	font-size: 300%;
+    text-shadow:0px 2px 5px black;
+}
+
+.banner{
+    width: 100%;
+    height: 80px;
+    background-color: #1f3ab6;
+    box-shadow: 1px 1px 10px;
+
+}
+input{
+	width: 100%;
+}
+legend{
+	text-align: center;
+    font-size: 115%;
+    font-weight:bolder;
+}
+select{
+    margin-bottom: 20px;
+}
+
+.input-termo{
+    margin-right: 76%;
+}
+
+.btn-site{
+    background-color: rgb(11, 61, 136);
+    color: white;
+    margin-top: 10px;
+    margin-left: 30%;
+    width: 40%;
+}
+
+.btn-site:hover{
+    color: white;
+    background-color:#4267cc;
+}
+
+.window{
+    display:none;
+    width:300px;
+    height:150px;
+    position:absolute;
+    left:0;
+    top:0;
+    background:#FFF;
+    z-index:9900;
+    padding:10px;
+    border-radius:10px;
+}
+
+.modal1{
+    background:#D3D3D3;
+    margin-left: 25%;
+    margin-top: 20px;
+    width: 800px;
+    height: 400px;
+}
+
+.modal2{
+    background:#D3D3D3;
+    margin-left: 25%;
+    width: 400px;
+    height: 400px;
+}
+.modal3{
+    background:#D3D3D3;
+    margin-left: 25%;
+    margin-top: 20px;
+    width: 800px;
+    height: 400px;
+    overflow: auto;
+}
+.modal4{
+    width: 500px;
+    height: 250px;
+}
+.modal5{
+    width: 789px;
+    height: 400px;
+}
+
+#mascara{
+    display:none;
+    position:absolute;
+    left:-5000;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+}
+ 
+.fechar{display:block; text-align:right;}
+
+.jumbotron{
+    margin-top: 50px;
+}
+
+.index{
+    margin-top: 100px;
+}
+
+.usuario{
+
+margin-top: 30px;
+float:right;
+margin-right: 10px;
+
+}
+
+
+
+
+
+
