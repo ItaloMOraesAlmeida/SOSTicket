@@ -11,7 +11,7 @@ if (file_exists($filename)) {
 
 ?>
 
-<!-- Formulário de Login -->
+<!-- Formulário de Login SOSTicket -->
 
 <html lang="pt-br">
 <head>
