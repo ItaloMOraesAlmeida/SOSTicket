@@ -177,12 +177,24 @@
                                             <div class="col-md-12">
                                                 <fieldset>
                                                     <legend>Cadastro do Administrador</legend>
-                                                            <label>Local</label>
-                                                            <input class="form-control" type="text" placeholder="Digite o Nome da Pasta do Administrador" id="locADM" name="locADM" ><br>
-                                                            <label>Nome</label>
-                                                            <input class="form-control" type="text" placeholder="Digite o Nome do Administrador" id="nomADM" name="nomADM" ><br>
+                                                            <label>Primeiro Nome</label>
+                                                            <input class="form-control" type="text" placeholder="Digite o Primeiro Nome do Administrador" id="pNomADM" name="pNomADM" ><br>
+                                                            <label>Segundo Nome</label>
+                                                            <input class="form-control" type="text" placeholder="Digite o Segundo Nome do Administrador" id="sNomADM" name="sNomADM" ><br>
                                                             <label>Email</label>
                                                             <input class="form-control" type="email" placeholder="Digite o Email" id="emailADM" name="emailADM" ><br>
+                                                            <label>CPF</label>
+                                                            <input class="form-control" type="text" placeholder="Digite o CPF do Administrador" id="cpfADM" name="cpfADM" ><br>
+                                                            <label>Data de Nascimento</label>
+                                                            <input class="form-control" type="date" placeholder="Digite a Data de Nascimento do Administrador" id="datNasADM" name="datNasADM" ><br>
+                                                            <label>Telefone</label>
+                                                            <input class="form-control" type="number" placeholder="Digite o Telefone do Administrador" id="telADM" name="telADM" ><br>
+                                                            <label>Sexo</label>
+                                                            <select class="form-control" id="sexoADM" name="sexoADM">
+                                                                <option value="0">Selecione o Sexo do Administrador</option>
+                                                                <option value="M">Masculino</option>
+                                                                <option value="F">Feminino</option>
+                                                            </select>
                                                             <label>Usuário</label>
                                                             <input class="form-control" type="text" placeholder="Digite o Usuário" id="userADM" name="userADM" data-minlength="6" ><br>
                                                             <label>Senha</label>
