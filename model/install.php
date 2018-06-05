@@ -1,12 +1,18 @@
 <?php
 
+// REQUISIÇÕES
+require_once '../dao/autenticaDB.php';
+require_once '../dao/autenticaLDAP.php';
+
 // Variaveis
 
+echo 'Excluir Banco Existente: '.$_POST['checkDB'].'<br>';
 echo 'Tipo de Base: '.$_POST['tipbase'].'<br>';
 echo 'Host Banco de dados: '.$_POST['hostBD'].'<br>';
 echo 'Banco de Dados: '.$_POST['database'].'<br>';
 echo 'Usuário Banco de dados: '.$_POST['usernameBD'].'<br>';
 echo 'Senha Banco de Dados: '.$_POST['passwordBD'].'<br>';
+echo 'Autenticação Pelo AD: '.$_POST['checkAD'].'<br>';
 echo 'Tipo de AD: '.$_POST['tipAD'].'<br>';
 echo 'Host do AD: '.$_POST['hostAD'].'<br>';
 echo 'Posta do AD: '.$_POST['portaAD'].'<br>';
@@ -33,3 +39,37 @@ echo 'Usuário do Administrador: '.$_POST['userADM'].'<br>';
 echo 'Senha do Administrador: '.$_POST['passwordADM'].'<br>';
 echo 'Repetir Senha do Administrador: '.$_POST['password2ADM'].'<br>';
 echo 'Check Box: '.$_POST['check'].'<br>';
+
+// VALIDAÇÃO CHECK BOX (TERMOS)
+if($_POST['check']){
+    // VALIDAÇÃO BASE DE DADOS
+    /*$autentica = new autenticaDB();
+    $autentica -> setBase($_POST['tipbase']);
+	$autentica -> setHost($_POST['hostBD']);
+	$autentica -> setDatabase($_POST['database']);
+	$autentica -> setUsername($_POST['usernameBD']);
+    $autentica -> setPassword($_POST['passwordBD']);
+    $msg = $autentica -> validarDB();
+    if($msg == 1){*/
+         // VALIDAÇÂO ACTIVE DIRECTORY
+         if(!$_POST['checkAD']){
+            $ldap = new autenticaLDAP();
+            $ldap -> setTipHost($_POST['tipAD']);
+            $ldap -> setHost($_POST['hostAD']);
+            $ldap -> setPorta($_POST['portaAD']);
+            $msg = $ldap -> autenticarLDAP();
+            $ldap -> desconectarLDAP();
+            if(!$msg == "true"){
+                header('location: ../view/form.install.php?ret=3&msg='.$msg);
+            }
+         }
+         // FIM VALIDAÇÃO ACTIVE DIRECTORY
+         
+         // VALIDAÇÃO EMAIL
+    /*}else{
+		header('location: ../view/form.install.php?ret=2&msg='.$msg);
+    }*/
+    // FIM DA VALIDAÇÂO BASE DE DADOS
+}else{
+    header('location: ../view/form.install.php?ret=1');
+}

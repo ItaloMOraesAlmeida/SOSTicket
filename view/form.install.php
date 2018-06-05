@@ -15,9 +15,29 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/index.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/aba.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/cssCheckbox.css">
                                     
     <!-- Fonts -->
     <link rel="stylesheet" type="text/css" href="../resources/css/fonts.css">
+
+    <!-- JavaScript -->
+    <script type="text/javascript">
+        function desabilitar(){ // Efetua  a ação de desabilitar todo sos campos do Active Directory
+            if(document.getElementById("checkAD").checked == true){
+                document.getElementById("tipAD").disabled = true;
+                document.getElementById("hostAD").disabled = true;
+                document.getElementById("portaAD").disabled = true;
+                document.getElementById("domiAD").disabled = true;
+                document.getElementById("verProtAD").disabled = true;
+            }else{
+                document.getElementById("tipAD").disabled = false;
+                document.getElementById("hostAD").disabled = false;
+                document.getElementById("portaAD").disabled = false;
+                document.getElementById("domiAD").disabled = false;
+                document.getElementById("verProtAD").disabled = false;
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -61,7 +81,19 @@
 
             <?php
 
-                
+                if($ret == 1){
+                    echo '  <div class="alert alert-danger">
+                                <strong>OPS! Algo Deu Errado!</strong> Termos de uso devem ser aceitos.
+                            </div>';
+                }else if($ret == 2){
+                    echo '  <div class="alert alert-danger">'.
+                                $inf
+                            .'</div>';
+                }else if($ret == 3){
+                    echo '  <div class="alert alert-danger">'.
+                                $inf
+                            .'</div>';
+                }
 
             ?>
 
@@ -80,14 +112,23 @@
                                         <li class="active"><a href="#tabDataBase" data-toggle="tab">Base de Dados</a></li>
                                         <li><a href="#tabActiveDirectory" data-toggle="tab">Active Directory</a></li>
                                         <li><a href="#tabEmail" data-toggle="tab">Email</a></li>
-                                        <li><a href="#tabAdministrador" data-toggle="tab">Administrador</a></li>
+                                        <!--<li><a href="#tabAdministrador" data-toggle="tab">Administrador</a></li>-->
                                     </ul>
                                 </div>
                                 <div class="panel-body">
                                     <div class="tab-content">
                                         <div class="tab-pane fade in active" id="tabDataBase">
                                             <!-- COL BASE DE DADOS -->
-                                            <div class="col-md-12">
+                                                <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                                                    <li class="list-group-item">
+                                                        Excluir a Base de Dados Existente?
+                                                        <div class="material-switch pull-right">
+                                                            <input id="checkDB" name="checkDB" type="checkbox"/>
+                                                            <label for="checkDB" class="label-success"></label>
+                                                        </div>
+                                                    </li>
+                                                </div>
+                                                <div class="col-md-12">
                                                 <fieldset>
                                                     <legend>Cadastro da Base de Dados</legend>
                                                         <form class="form-horizontal" data-toggle="validator" action="../model/install.php" method="post"> <!-- FORMULÁRIO -->
@@ -112,7 +153,16 @@
 
                                         <div class="tab-pane fade" id="tabActiveDirectory">
                                             <!-- COL ACTIVE DIRECTORY -->
-                                            <div class="col-md-12">
+                                                <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                                                    <li class="list-group-item">
+                                                        Autenticação pelo Activite Directory
+                                                        <div class="material-switch pull-right">
+                                                            <input id="checkAD" name="checkAD" type="checkbox" onclick="desabilitar()"/>
+                                                            <label for="checkAD" class="label-success"></label>
+                                                        </div>
+                                                    </li>
+                                                </div>
+                                                <div class="col-md-12">
                                                 <fieldset>
                                                     <legend>Cadastro do Active Directory</legend>
                                                             <label>Tipo de Host</label>
@@ -169,12 +219,26 @@
                                                             <input class="form-control" type="text" placeholder="Digite o Nome do Remetente" id="nomeRemetenteEmail" name="nomeRemetenteEmail" ><br>
                                                             <label>Email de Teste</label>
                                                             <input class="form-control" type="email" placeholder="Digite o Email. OBS: Este será usado apenas para envio de um email de teste" id="emailTeste" name="emailTeste" ><br>
+
+                                                            <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                                                                <li class="list-group-item">
+                                                                    <a data-toggle="modal" data-target="#termo">Li e Aceito os Termos de Uso!</a>
+                                                                    <div class="material-switch pull-right input-termo">
+                                                                        <input id="check" name="check" type="checkbox"/>
+                                                                        <label for="check" class="label-success"></label>
+                                                                    </div>
+                                                                </li>
+                                                            </div>
+                                
+                                                            <div>
+                                                                <input type="submit" class="btn btn-inverse btn-site" name="btnCad" id="btnCad" value="Instalar">
+                                                            </div>
                                                 </fieldset>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tabAdministrador">
                                             <!-- COL ADIMISTRADOR -->
-                                            <div class="col-md-12">
+                                        <!--    <div class="col-md-12">
                                                 <fieldset>
                                                     <legend>Cadastro do Administrador</legend>
                                                             <label>Primeiro Nome</label>
@@ -214,7 +278,7 @@
                                 
                                                             <div>
                                                                 <input type="submit" class="btn btn-inverse btn-site" name="btnCad" id="btnCad" value="Instalar">
-                                                            </div>
+                                                            </div> -->
                                                         </form> <!-- FIM DO FORMULÁRIO -->
                                                 </fieldset>
                                             </div>
