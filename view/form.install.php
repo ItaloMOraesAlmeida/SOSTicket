@@ -199,7 +199,7 @@
                                                                 <option value="UTF-8">UTF-8</option>
                                                             </select>
                                                             <label>Host</label>
-                                                            <input class="form-control" type="text" placeholder="Digite Host Ex: 127.0.0.1" id="hostEmail" name="hostEmail" maxlength="15" ><br>
+                                                            <input class="form-control" type="text" placeholder="Digite Host Ex: 127.0.0.1" id="hostEmail" name="hostEmail" maxlength="50" ><br>
                                                             <label>Porta</label>
                                                             <input class="form-control" type="text" placeholder="Digite a Porta" id="portaEmail" name="portaEmail" ><br>
                                                             <label>Protocolo de Segurança</label>

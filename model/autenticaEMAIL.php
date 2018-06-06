@@ -22,18 +22,18 @@
         Public function Conectar(){
             $this -> getMail()->IsSMTP(); // Define que a mensagem será SMTP
             $this -> getMail()->CharSet = $this -> getCharset();
-            $this -> getMail()->Host = $this -> getHost(); // Endereço do servidor SMTP
-            $this -> getMail()->Port = $this -> getPorta();
+            $this -> getMail()->Host = $this -> getHost(); // Endereço do servidor de Email
+            $this -> getMail()->Port = $this -> getPorta(); // Porta do Servidor de Email
             $this -> getMail()->SMTPSecure = $this -> getProtseg();
             $this -> getMail()->SMTPAuth = $this -> getAutsmtp(); // Usa autenticação SMTP? (opcional)
-            $this -> getMail()->Username = $this -> getUsersmtp(); // Usuário do servidor SMTP
-            $this -> getMail()->Password = $this -> getSenhasmtp(); // Senha do servidor SMTP
+            $this -> getMail()->Username = $this -> getUsersmtp(); // Usuário do servidor de Email
+            $this -> getMail()->Password = $this -> getSenhasmtp(); // Senha do servidor de Email
             $this -> getMail()->From = $this -> getEmailrem(); // Seu e-mail, quem envia
             $this -> getMail()->FromName = $this -> getNomerem(); // Seu nome
         }
 
         Public function EnviarTeste(){
-            $this -> getMail()->AddAddress($this -> getEmailteste); // Destinatário
+            $this -> getMail()->AddAddress($this -> getEmailteste()); // Destinatário
             $this -> getMail()->Subject = 'Email de Teste - MeuSoftware'; // Assunto da mensagem
             $this -> getMail()->MsgHTML('Envio efetuado com sucesso!');
             $enviado = $this -> getMail()->Send();
@@ -83,7 +83,7 @@
         }
 
         Public function setAutsmtp($aut){
-            $this -> autsmtp = $sut;
+            $this -> autsmtp = $aut;
         }
 
         Public function getAutsmtp(){

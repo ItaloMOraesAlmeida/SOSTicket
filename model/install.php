@@ -45,7 +45,7 @@ echo 'Check Box: '.$_POST['check'].'<br>';
 // VALIDAÇÃO CHECK BOX (TERMOS)
 if($_POST['check']){
     // VALIDAÇÃO BASE DE DADOS
-    $autentica = new autenticaDB();
+    /*$autentica = new autenticaDB();
     $autentica -> setBase($_POST['tipbase']);
 	$autentica -> setHost($_POST['hostBD']);
 	$autentica -> setDatabase($_POST['database']);
@@ -67,7 +67,7 @@ if($_POST['check']){
         }
         // FIM VALIDAÇÃO ACTIVE DIRECTORY
         
-        // VALIDAÇÃO EMAIL
+        // VALIDAÇÃO EMAIL*/
         $email = new autenticaEMAIL();
         $email -> setCharset($_POST['charsetEmail']);
         $email -> setHost($_POST['hostEmail']);
@@ -82,15 +82,15 @@ if($_POST['check']){
         $email -> Conectar();
         $msg = $email -> EnviarTeste();
         if($msg == 1){
-            echo "OK";
+            // CRIAÇÃO DOS ARQUIVOS DE CONFIGURAÇÃO
         }else{
             header('location: ../view/form.install.php?ret=4&msg='.$msg);
         }
         // FIM VALIDAÇÃO EMAIL
-    }else{
+    /*}else{
 		header('location: ../view/form.install.php?ret=2&msg='.$msg);
     }
-    // FIM DA VALIDAÇÂO BASE DE DADOS
+    // FIM DA VALIDAÇÂO BASE DE DADOS*/
 }else{
     header('location: ../view/form.install.php?ret=1');
 }
