@@ -3,6 +3,8 @@
 // REQUISIÇÕES
 require_once '../dao/autenticaDB.php';
 require_once '../dao/autenticaLDAP.php';
+require_once 'autenticaEMAIL.php';
+
 
 // Variaveis
 
@@ -43,32 +45,51 @@ echo 'Check Box: '.$_POST['check'].'<br>';
 // VALIDAÇÃO CHECK BOX (TERMOS)
 if($_POST['check']){
     // VALIDAÇÃO BASE DE DADOS
-    /*$autentica = new autenticaDB();
+    $autentica = new autenticaDB();
     $autentica -> setBase($_POST['tipbase']);
 	$autentica -> setHost($_POST['hostBD']);
 	$autentica -> setDatabase($_POST['database']);
 	$autentica -> setUsername($_POST['usernameBD']);
     $autentica -> setPassword($_POST['passwordBD']);
     $msg = $autentica -> validarDB();
-    if($msg == 1){*/
-         // VALIDAÇÂO ACTIVE DIRECTORY
-         if(!$_POST['checkAD']){
-            $ldap = new autenticaLDAP();
-            $ldap -> setTipHost($_POST['tipAD']);
-            $ldap -> setHost($_POST['hostAD']);
-            $ldap -> setPorta($_POST['portaAD']);
-            $msg = $ldap -> autenticarLDAP();
-            $ldap -> desconectarLDAP();
-            if(!$msg == "true"){
-                header('location: ../view/form.install.php?ret=3&msg='.$msg);
-            }
-         }
-         // FIM VALIDAÇÃO ACTIVE DIRECTORY
-         
-         // VALIDAÇÃO EMAIL
-    /*}else{
+    if($msg == 1){
+        // VALIDAÇÂO ACTIVE DIRECTORY
+        if(!$_POST['checkAD']){
+           $ldap = new autenticaLDAP();
+           $ldap -> setTipHost($_POST['tipAD']);
+           $ldap -> setHost($_POST['hostAD']);
+           $ldap -> setPorta($_POST['portaAD']);
+           $msg = $ldap -> autenticarLDAP();
+           $ldap -> desconectarLDAP();
+           if(!$msg == 1){
+               header('location: ../view/form.install.php?ret=3&msg='.$msg);
+           }
+        }
+        // FIM VALIDAÇÃO ACTIVE DIRECTORY
+        
+        // VALIDAÇÃO EMAIL
+        $email = new autenticaEMAIL();
+        $email -> setCharset($_POST['charsetEmail']);
+        $email -> setHost($_POST['hostEmail']);
+        $email -> setPorta($_POST['portaEmail']);
+        $email -> setProtseg($_POST['protocoloEmail']);
+        $email -> setAutsmtp($_POST['autenticacaoEmail']);
+        $email -> setUsersmtp($_POST['userEmail']);
+        $email -> setSenhasmtp($_POST['passEmail']);
+        $email -> setEmailrem($_POST['remetenteEmail']);
+        $email -> setNomerem($_POST['nomeRemetenteEmail']);
+        $email -> setEmailteste($_POST['emailTeste']);
+        $email -> Conectar();
+        $msg = $email -> EnviarTeste();
+        if($msg == 1){
+            echo "OK";
+        }else{
+            header('location: ../view/form.install.php?ret=4&msg='.$msg);
+        }
+        // FIM VALIDAÇÃO EMAIL
+    }else{
 		header('location: ../view/form.install.php?ret=2&msg='.$msg);
-    }*/
+    }
     // FIM DA VALIDAÇÂO BASE DE DADOS
 }else{
     header('location: ../view/form.install.php?ret=1');

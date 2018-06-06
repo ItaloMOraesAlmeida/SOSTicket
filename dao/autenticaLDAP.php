@@ -13,7 +13,7 @@ class autenticaLDAP{
 	Public function autenticarLDAP(){
 		$this -> setLc(ldap_connect($this -> getHost(), $this -> getPorta()));
 		if($this -> getLc()){
-			return "true";
+			return 1;
 		}else{
 			return "<strong>Erro ao conectar no seridor LDAP: </strong>".ldap_error($this -> getLc());
 		}
