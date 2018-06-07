@@ -45,7 +45,7 @@ echo 'Check Box: '.$_POST['check'].'<br>';
 // VALIDAÇÃO CHECK BOX (TERMOS)
 if($_POST['check']){
     // VALIDAÇÃO BASE DE DADOS
-    /*$autentica = new autenticaDB();
+    $autentica = new autenticaDB();
     $autentica -> setBase($_POST['tipbase']);
 	$autentica -> setHost($_POST['hostBD']);
 	$autentica -> setDatabase($_POST['database']);
@@ -63,11 +63,25 @@ if($_POST['check']){
            $ldap -> desconectarLDAP();
            if(!$msg == 1){
                header('location: ../view/form.install.php?ret=3&msg='.$msg);
+           }else{
+               $ad = true;
            }
+        }else{
+            $ad = false;
         }
         // FIM VALIDAÇÃO ACTIVE DIRECTORY
+
+        // TIPO DE BANCO DE DADOS
+        if("".$_POST['tipbase']."" == "sqlsrv"){
+            $sqlsrv = true;
+            $mysql = false;
+        }else if("".$_POST['tipbase']."" == "mysql"){
+            $sqlsrv = false;
+            $mysql = true;
+        }
+        // FIM TIPO
         
-        // VALIDAÇÃO EMAIL*/
+        // VALIDAÇÃO EMAIL
         $email = new autenticaEMAIL();
         $email -> setCharset($_POST['charsetEmail']);
         $email -> setHost($_POST['hostEmail']);
@@ -83,14 +97,188 @@ if($_POST['check']){
         $msg = $email -> EnviarTeste();
         if($msg == 1){
             // CRIAÇÃO DOS ARQUIVOS DE CONFIGURAÇÃO
+            /// ARQUIVO CONECTORES
+            $nomearq = "class.conectores.php";
+            //// VERIFICA SE O ARQUIVO EXISTE
+            if(file_exists($nomearq)){
+                $dados = file_get_contents($nomearq);
+            }else{
+                $dados = "";
+            }
+            //// FIM DA VERIFICAÇÃO
+            //// CRIAÇÃO DOS DADOS DO ARQUIVO 
+            $dados = '
+            <?php
+
+            /******************************************************************************************
+             *                        CONECTORES DE AUTENTICAÇÃO E VERIFICAÇÃO                        *
+             * Versão: 1.3                                                                            *
+             * Autor: Italo Moraes                                                                    *
+             * Pacote: NULL                                                                           *
+             * Empresa: MySoftware                                                                    *                                                                           *
+             * Descrição:                                                                             *
+             *      Resposavel pela passagem de parâmetros entre os dados de instalação e os dados    *
+             *  para conexão e autenticação das bases.                                                *
+             *                                                                                        *
+             * OBS: CONCLUÍDO                                                                         *
+             *                                                                                        *
+             * ---------------------------------------------------------------------------------------*
+             * |                                    LICENÇA PRIVADA                                  |*
+             * ---------------------------------------------------------------------------------------*
+             ******************************************************************************************/
+            
+                class conectores{
+                    public $basedb;
+                    public $hostdb;
+                    public $basead;
+                    public $hostad;
+                    public $portaad;
+                    public $protocolo;
+                    public $dominioad;
+                    public $database;
+                    public $usernamedb;
+                    public $passworddb;
+                    public $isdbsqlserver;
+                    public $isdbmysql;
+                    public $isconnectionad;
+            
+                    public function __construct(){
+                        $this -> setBasedb("'.$_POST['tipbase'].'");
+                        $this -> setHostdb("'.$_POST['hostBD'].'");
+                        $this -> setBasead("'.$_POST['tipAD'].'");
+                        $this -> setHostad("'.$_POST['hostAD'].'");
+                        $this -> setPortaad("'.$_POST['portaAD'].'");
+                        $this -> setProtocolo('.$_POST['verProtAD'].');
+                        $this -> setDominioad("'.$_POST['domiAD'].'");
+                        $this -> setDatabase("'.$_POST['database'].'");
+                        $this -> setUsernamedb("'.$_POST['usernameBD'].'");
+                        $this -> setPassworddb("'.$_POST['passwordBD'].'");
+                        $this -> setIsdbsqlserver('.$sqlsrv.'); // Autenticação pelo SQLSERVER
+                        $this -> setIsdbmysql('.$mysql.'); // Autenticação pelo MYSQL
+                        $this -> setIsconnectionad('.$ad.'); // Autenticação pelo Activite Directory
+                    }
+
+                    public function setBasedb($base){
+                        $this -> basedb = $base;
+                    }
+            
+                    public function getBasedb(){
+                        return $this -> basedb;
+                    }
+            
+                    public function setHostdb($host){
+                        $this -> hostdb = $host;
+                    }
+            
+                    public function getHostdb(){
+                        return $this -> hostdb;
+                    }
+            
+                    public function setBasead($base){
+                        $this -> basead = $base;
+                    }
+            
+                    public function getBasead(){
+                        return $this -> basead;
+                    }
+            
+                    public function setHostad($host){
+                        $this -> hostad = $host;
+                    }
+            
+                    public function getHostad(){
+                        return $this -> hostad;
+                    }
+            
+                    public function setPortaad($porta){
+                        $this -> portaad = $porta;
+                    }
+            
+                    public function getPortaad(){
+                        return $this -> portaad;
+                    }
+            
+                    public function setProtocolo($protocolo){
+                        $this -> protocolo = $protocolo;
+                    }
+            
+                    public function getProtocolo(){
+                        return $this -> protocolo;
+                    }
+            
+                    public function setDominioad($dominio){
+                        $this -> dominioad = $dominio;
+                    }
+            
+                    public function getDominioad(){
+                        return $this -> dominioad;
+                    }
+            
+                    public function setDatabase($database){
+                        $this -> database = $database;
+                    }
+            
+                    public function getDatabase(){
+                        return $this -> database;
+                    }
+            
+                    public function setUsernamedb($user){
+                        $this -> usernamedb = $user;
+                    }
+            
+                    public function getUsernamedb(){
+                        return $this -> usernamedb;
+                    }
+            
+                    public function setPassworddb($pass){
+                        $this -> passworddb = $pass;
+                    }
+            
+                    public function getPassworddb(){
+                        return $this -> passworddb;
+                    }
+            
+                    public function setIsdbsqlserver($sqlserver){
+                        $this -> isdbsqlserver = $sqlserver;
+                    }
+            
+                    public function getIsdbsqlserver(){
+                        return $this -> isdbsqlserver;
+                    }
+            
+                    public function setIsdbmysql($mysql){
+                        $this -> isdbmysql = $mysql;
+                    }
+            
+                    public function getIsdbmysql(){
+                        return $this -> isdbmysql;
+                    }
+            
+                    public function setIsconnectionad($ad){
+                        $this -> isconnectionad = $ad;
+                    }
+            
+                    public function getIsconnectionad(){
+                        return $this -> isconnectionad;
+                    }
+                }
+            ';
+            //// FIM DA CRIAÇÃO
+            //// ESCRITA DOS DADOS NO ARQUIVO
+            $arquivo = @fopen($nomearq, "w+");
+            @fwrite($arquivo, stripcslashes($dados));
+            @fclose($arquivo);
+            //// FIM DA ESCRITA
+            /// FIM DOS CONECTORES
+            /// ARQUIVO EMAIL
         }else{
             header('location: ../view/form.install.php?ret=4&msg='.$msg);
         }
         // FIM VALIDAÇÃO EMAIL
-    /*}else{
+    }else{
 		header('location: ../view/form.install.php?ret=2&msg='.$msg);
     }
-    // FIM DA VALIDAÇÂO BASE DE DADOS*/
+    // FIM DA VALIDAÇÂO BASE DE DADOS
 }else{
     header('location: ../view/form.install.php?ret=1');
 }
