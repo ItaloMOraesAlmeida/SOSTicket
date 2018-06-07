@@ -67,16 +67,16 @@ if($_POST['check']){
                $ad = true;
            }
         }else{
-            $ad = false;
+            $ad = 0;
         }
         // FIM VALIDAÇÃO ACTIVE DIRECTORY
 
         // TIPO DE BANCO DE DADOS
         if("".$_POST['tipbase']."" == "sqlsrv"){
             $sqlsrv = true;
-            $mysql = false;
+            $mysql = 0;
         }else if("".$_POST['tipbase']."" == "mysql"){
-            $sqlsrv = false;
+            $sqlsrv = 0;
             $mysql = true;
         }
         // FIM TIPO
