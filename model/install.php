@@ -271,6 +271,7 @@ if($_POST['check']){
             //// FIM DA ESCRITA
             /// FIM DOS CONECTORES
             /// ARQUIVO EMAIL
+            /// FIM ARQUIVO EMAIL
         }else{
             header('location: ../view/form.install.php?ret=4&msg='.$msg);
         }
