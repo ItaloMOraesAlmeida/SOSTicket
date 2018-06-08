@@ -1,8 +1,9 @@
 <?php
 
     require_once "abstract.email.php";
+    require_once "../controller/abstract.email.php";
 
-    class Email extends AbsEmail{
+    class Email extends AbsEmail implements IntEmail{
 
         Private $destinatario;
         Private $titulo;
