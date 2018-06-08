@@ -12,9 +12,6 @@
         Protected $senhasmtp = "";
         Protected $emailrem = "";
         Protected $nomerem = "";
-        Protected $destinatario;
-        Protected $titulo;
-        Protected $assunto;
         Protected $mail;
 
         Protected final function conectar(){
@@ -24,25 +21,11 @@
             $this -> getMail()->Host = $this -> getHost(); // Endereço do servidor de Email
             $this -> getMail()->Port = $this -> getPorta(); // Porta do Servidor de Email
             $this -> getMail()->SMTPSecure = $this -> getProtseg();
-            $this -> getMail()->SetLanguage("br", "libs/");
             $this -> getMail()->SMTPAuth = $this -> getAutsmtp(); // Usa autenticação SMTP? (opcional)
             $this -> getMail()->Username = $this -> getUser(); // Usuário do servidor de Email
             $this -> getMail()->Password = $this -> getPass(); // Senha do servidor de Email
             $this -> getMail()->From = $this -> getEmarem(); // Seu e-mail, quem envia
             $this -> getMail()->FromName = $this -> getNomrem(); // Seu nome
-        }
-
-        public final function enviar($destinatario,$titulo,$assunto){
-            $this -> conectar();
-            $this -> getMail()->AddAddress($destinatario); // Destinatário
-            $this -> getMail()->Subject = $titulo; // Titulo da mensagem
-            $this -> getMail()->MsgHTML($assunto); // Assunto/Descrição/Conteudo da Mensagem
-            $envio = $this -> getMail()->Send(); // Envia a mensagem
-            if($envio){
-                return 1;
-            }else{
-                return "<strong>Erro ao Enviar o Email: </strong> " . $this -> getMail()->ErrorInfo . "\n";
-            }
         }
 
         Protected function Desconectar(){
@@ -85,30 +68,6 @@
 
         Protected function getNomrem(){
             return $this -> nomerem;
-        }
-
-        Protected function setDestinatario($destina){
-            $this -> destinatario = $destina;
-        }
-
-        Protected function getDestinatario(){
-            return $this -> destinatario;
-        }
-
-        Protected function setTitulo($titulo){
-            $this -> titulo = $titulo;
-        }
-
-        Protected function getTitulo(){
-            return $this -> titulo;
-        }
-
-        Protected function setAssunto($assunto){
-            $this -> assunto = $assunto;
-        }
-
-        Protected function getAssunto(){
-            return $this -> assunto;
         }
 
         Protected function setMail($mail){
