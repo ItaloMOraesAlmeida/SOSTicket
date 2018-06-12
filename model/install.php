@@ -4,6 +4,7 @@
 require_once '../dao/autenticaDB.php';
 require_once '../dao/autenticaLDAP.php';
 require_once 'autenticaEMAIL.php';
+require_once '../dao/import.base.php';
 
 
 // Variaveis
@@ -48,9 +49,9 @@ if($_POST['check']){
     // VALIDAÇÃO BASE DE DADOS
     $autentica = new autenticaDB();
     $autentica -> setBase($_POST['tipbase']);
-	$autentica -> setHost($_POST['hostBD']);
-	$autentica -> setDatabase($_POST['database']);
-	$autentica -> setUsername($_POST['usernameBD']);
+    $autentica -> setHost($_POST['hostBD']);
+    $autentica -> setDatabase($_POST['database']);
+    $autentica -> setUsername($_POST['usernameBD']);
     $autentica -> setPassword($_POST['passwordBD']);
     $msg = $autentica -> validarDB();
     if($msg == 1){
@@ -388,6 +389,21 @@ if($_POST['check']){
             @fclose($arquivo);
             //// FIM DA ESCRITA
             /// FIM ARQUIVO EMAIL
+            // FIM DA CRIAÇÃO DOS ARQUIVOS DE CONFIGURAÇÃO
+            
+            // CRIAÇÃO E IMPORTAÇÃO DO BANCO DE DADOS
+            $impbase = new ImpBase();
+            if($mysql){
+                echo "Criando base Mysql";
+                $impbase = $impbase -> ImpbaseMysql();
+            }else if($sqlserver){
+                echo "Criando base SQLSERVER";
+                $impbase = $impbase -> ImpbaseSqlserver();
+            }else{
+                // ERRO AO SELECIONAR BASE DE DADOS: Base indefinida
+                echo "Erro";
+            }
+            // FIM DA CRIAÇÃO E IMPORTAÇÃO
         }else{
             header('location: ../view/form.install.php?ret=4&msg='.$msg);
         }

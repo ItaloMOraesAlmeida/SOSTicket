@@ -23,8 +23,8 @@ class autenticaDB{
             }
         }else if($this -> getBase() == "mysql"){
             try{
-                $pdo = new PDO($this -> getBase().":".$this -> getHost().";dbname=".$this -> getDatabase(),$this -> getUsername(),$this -> getPassword());
-                $this -> getPdo() -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $pdo = new PDO ($this -> getBase().":".$this -> getHost().";dbname=".$this -> getDatabase(),$this -> getUsername(),$this -> getPassword());
+                $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 unset($pdo);
                 return 1;
             }catch(PDOException $e){
