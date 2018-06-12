@@ -4,7 +4,6 @@
 require_once '../dao/autenticaDB.php';
 require_once '../dao/autenticaLDAP.php';
 require_once 'autenticaEMAIL.php';
-require_once '../dao/import.base.php';
 
 
 // Variaveis
@@ -392,13 +391,14 @@ if($_POST['check']){
             // FIM DA CRIAÇÃO DOS ARQUIVOS DE CONFIGURAÇÃO
             
             // CRIAÇÃO E IMPORTAÇÃO DO BANCO DE DADOS
+            require_once '../dao/import.base.php';
             $impbase = new ImpBase();
             if($mysql){
                 echo "Criando base Mysql";
-                $impbase = $impbase -> ImpbaseMysql();
+                //$impbase = $impbase -> ImpbaseMysql();
             }else if($sqlserver){
                 echo "Criando base SQLSERVER";
-                $impbase = $impbase -> ImpbaseSqlserver();
+                //$impbase = $impbase -> ImpbaseSqlserver();
             }else{
                 // ERRO AO SELECIONAR BASE DE DADOS: Base indefinida
                 echo "Erro";

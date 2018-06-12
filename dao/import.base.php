@@ -1,5 +1,5 @@
 <?php
-    require_once "../model/class.conexao.php";
+    require_once '../model/class.conexao.php';
 
     class ImpBase {
         Private $base;
