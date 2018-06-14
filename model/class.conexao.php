@@ -69,7 +69,7 @@
                 if($this -> getIsdbsqlserver()){
                     $this -> setPdo(new PDO($this -> getBasedb().":server = ".$this -> getHostdb()." ; Database = ".$this -> getDatabase(),$this ->getUsernamedb(),$this -> getPassworddb()));
                 }else if($this -> getIsdbmysql()){
-                    $this -> setPdo(new PDO($this -> getBasedb().":".$this -> getHostdb().";dbname=".$this -> getDatabase(),$this -> getUsernamedb(),$this -> getPassworddb()));
+                    $this -> setPdo(new PDO($this -> getBasedb().":host = ".$this -> getHostdb().";dbname = ".$this -> getDatabase(), $this -> getUsernamedb(), $this -> getPassworddb()));
                     $this -> getPdo() -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 }
                 return $this -> getPdo();
