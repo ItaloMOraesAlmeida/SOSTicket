@@ -79,7 +79,7 @@
             }
         }
 
-        Private function excluirPDO(){ // Exclui o objeto instanciado na conexão do banco de dados
+        Public function excluirPDO(){ // Exclui o objeto instanciado na conexão do banco de dados
             unset($this -> pdo);
         }
 

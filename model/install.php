@@ -395,10 +395,10 @@ if($_POST['check']){
             $impbase = new ImpBase();
             if($mysql){
                 echo "Criando base Mysql";
-                //$impbase = $impbase -> ImpbaseMysql();
+                $impbase = $impbase -> ImpbaseMysql();
             }else if($sqlserver){
                 echo "Criando base SQLSERVER";
-                //$impbase = $impbase -> ImpbaseSqlserver();
+                $impbase = $impbase -> ImpbaseSqlserver();
             }else{
                 // ERRO AO SELECIONAR BASE DE DADOS: Base indefinida
                 echo "Erro";
