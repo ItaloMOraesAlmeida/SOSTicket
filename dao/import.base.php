@@ -236,7 +236,9 @@
                                                     (Null,'Afastado-Licença Médica(30 Dias)',1,Now(),Null),
                                                     (Null,'Afastado-Licença Maternidade',1,Now(),Null);
             ");
-            return $this -> query($this -> getQuery());
+            $ret = $this -> query($this -> getQuery());
+            $this -> excluirPDO();
+            return $ret;
         }
 
         public function ImpbaseSqlserver(){
