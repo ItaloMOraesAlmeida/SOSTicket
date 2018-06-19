@@ -404,6 +404,14 @@ if($_POST['check']){
                 echo "Erro";
             }
             // FIM DA CRIAÇÃO E IMPORTAÇÃO
+
+            // REDIRECIONAMENTO PARA A TELA DE INFORMAÇÕES SOBRE A EMPRESA
+            if($impbase){
+
+            }else{
+                
+            }
+            // FIM DO REDIRECIONAMENTO
         }else{
             header('location: ../view/form.install.php?ret=4&msg='.$msg);
         }

@@ -7,10 +7,16 @@
         Private $exe;
 
         Protected function query($query){
-            $this -> setCon(new Conexao());
-            $this -> setPdo($this -> getCon() -> conectarDb());
-            $this -> setExec($this -> getPdo() -> prepare("$query"));
-            $this -> getExec() -> execute();
+            try{
+                $this -> setCon(new Conexao());
+                $this -> setPdo($this -> getCon() -> conectarDb());
+                $this -> setExec($this -> getPdo() -> prepare("$query"));
+                $this -> getExec() -> execute();
+                return 1;
+            }catch(PDOException $e){
+                echo 'ERROR: ' . $e->getMessage();
+            }
+            
             excluirPDO();  // Verificar como será o retorno desta classe e onde irá ficar a exclusão
             // Se vai ser nesta classe ou an classeresponsavel por montar a query
         }
