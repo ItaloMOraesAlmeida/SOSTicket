@@ -37,13 +37,13 @@
                         $this -> setBasedb("mysql");
                         $this -> setHostdb("127.0.0.1");
                         $this -> setBasead("ldaps");
-                        $this -> setHostad("192.168.10.4");
-                        $this -> setPortaad("636");
-                        $this -> setProtocolo(3);
-                        $this -> setDominioad("@cidadania.intra.ong");
+                        $this -> setHostad("");
+                        $this -> setPortaad("");
+                        $this -> setProtocolo(0);
+                        $this -> setDominioad("");
                         $this -> setDatabase("sosticket");
                         $this -> setUsernamedb("root");
-                        $this -> setPassworddb("Italaquimaso1");
+                        $this -> setPassworddb("");
                         $this -> setIsdbsqlserver(0); // Autenticação pelo SQLSERVER
                         $this -> setIsdbmysql(1); // Autenticação pelo MYSQL
                         $this -> setIsconnectionad(1); // Autenticação pelo Activite Directory

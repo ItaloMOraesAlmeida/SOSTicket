@@ -22,14 +22,14 @@
 
                 abstract class AbsEmail{
                     Protected $charset = "UTF-8";
-                    Protected $host = "smtp.office365.com";
-                    Protected $porta = 587;
-                    Protected $protseg = "tls";
+                    Protected $host = "";
+                    Protected $porta = 0;
+                    Protected $protseg = "";
                     Protected $autsmtp = true;
-                    Protected $usersmtp = "integracao@inec.org.br";
-                    Protected $senhasmtp = "INEC@Inte3gr4c@04D";
-                    Protected $emailrem = "integracao@inec.org.br";
-                    Protected $nomerem = "Integração AD";
+                    Protected $usersmtp = "";
+                    Protected $senhasmtp = "";
+                    Protected $emailrem = "";
+                    Protected $nomerem = "";
                     Protected $mail;
 
                     Protected final function conectar(){
