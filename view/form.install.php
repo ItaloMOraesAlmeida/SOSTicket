@@ -97,6 +97,14 @@
                     echo '  <div class="alert alert-danger">'.
                                 $inf
                             .'</div>';
+                }else if($ret == 5){
+                    echo '  <div class="alert alert-danger">'.
+                                $inf
+                            .'</div>';
+                }else if($ret == 6){
+                    echo '  <div class="alert alert-danger">'.
+                                $inf
+                            .'</div>';
                 }
 
             ?>

@@ -10,11 +10,11 @@
             try{
                 $this -> setCon(new Conexao());
                 $this -> setPdo($this -> getCon() -> conectarDb());
-                $this -> setExec($this -> getPdo() -> prepare("$query"));
-                $this -> getExec() -> execute();
+                $this -> setExe($this -> getPdo() -> prepare("$query"));
+                $this -> getExe() -> execute();
                 return 1;
             }catch(PDOException $e){
-                echo 'ERROR: ' . $e->getMessage();
+                return '<strong>ERROR:</strong> ' . $e->getMessage();
             }
         }
 
@@ -33,7 +33,7 @@
         }
 
         Private function setPdo($pdo){
-            $this -> pdo = $$pdo;
+            $this -> pdo = $pdo;
         }
 
         Private function getPdo(){

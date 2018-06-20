@@ -242,7 +242,235 @@
         }
 
         public function ImpbaseSqlserver(){
-            
+            $this -> setQuery("
+            Create Table tCargo(
+                codCar Int Not Null Identity,
+                carNom Varchar(100) Not Null,
+                carSit TinyInt Not Null,
+                carDca DateTime Not Null,
+                carDfi DateTime Default Null,
+                Primary Key (codCar)
+            );
+            Create Table tLocal(
+                codLoc Int Not Null Identity,
+                locNom Varchar(100) Not Null,
+                locSit TinyInt Not Null,
+                locDca DateTime Not Null,
+                locDfi DateTime Default Null,
+                Primary Key (codLoc)
+            );
+            Create Table tEmpresa(
+                codEmp Int Not Null Identity,
+                empNom Varchar (100) Not Null,
+                empSit TinYInt Not Null,
+                empDca DateTime Not Null,
+                empDfi DateTime Default Null,
+                Primary Key (codEmp)
+            );
+            Create Table tPerfil(
+                codPer Int Not Null Identity,
+                perNom Varchar (100) Not Null,
+                perSit TinyInt Not Null,
+                perDca DateTime Not Null,
+                perDfi DateTime Default Null,
+                Primary Key (codPer)
+            );
+            Create Table tSituacao(
+                codSit Int not Null Identity,
+                sitNom Varchar (100) Not Null,
+                sitSit TinyInt not Null,
+                sitDca DateTime Not Null,
+                sitDfi DateTime Default Null,
+                Primary Key (codSit)
+            );
+            Create Table tUsuario(
+                codUsu Int Not Null Identity,
+                usuNom Varchar (20) Not Null,
+                usuSno Varchar (100) Not Null,
+                usuEma Varchar (150) Not Null,
+                usuLog Varchar (100) Not Null,
+                UsuSen Varchar (100) Not Null,
+                usuCpf Varchar (11) Not Null,
+                usuDna DateTime Not Null,
+                usuTel Int Not Null,
+                usuSex Char (1) Not Null,
+                usuDca DateTime not Null,
+                usuDaf DateTime Default Null,
+                codCar Int Not Null,
+                codLoc Int Not Null,
+                codEmp Int Not Null,
+                codPer Int Not Null,
+                codSit Int Not Null,
+                Primary Key (codUsu)
+            );
+            Create Table tAnexoOds (
+                codAnx Int Not Null Identity,
+                anxNom Varchar (50) Not Null,
+                anxLoc Varchar (50) Not Null,
+                anxTam Numeric (7,3) Not Null,
+                anxDca DateTime Not Null,
+                codOds Int Not Null,
+                Primary Key (codAnx)
+            );
+            Create Table tAnexoCom (
+                codAnx Int Not Null identity,
+                anxNom Varchar (50) Not Null,
+                anxLoc Varchar (50) Not Null,
+                anxTam Numeric (7,3) Not Null,
+                anxDca DateTime Not Null,
+                Primary Key (codAnx)
+            );
+            Create Table tAnexoOrc (
+                codAnx Int Not Null Identity,
+                anxNom Varchar (50) Not Null,
+                anxLoc Varchar (50) Not Null,
+                anxTam Numeric (7,3) Not Null,
+                anxDca DateTime Not Null,
+                codOrc Int Not Null,
+                Primary Key (codAnx)
+            );
+            Create Table tEstado (
+                codEst Int Not Null Identity,
+                estNom Varchar (50) Not Null,
+                estSit TinyInt Not Null,
+                estDca DateTime Not Null,
+                estDfi DateTime Default Null,
+                Primary Key (codEst)
+            );
+            Create Table tPrioridade (
+                codPrd Int Not Null Identity,
+                prdNom Varchar (50) Not Null,
+                prdSit TinyInt Not Null,
+                prdDca DateTime Not Null,
+                prdDfi DateTime Null,
+                Primary Key (codPrd)
+            );
+            Create Table tTempoConclusao (
+                codTco Int Not Null Identity,
+                tcoNom Varchar (20) Not Null,
+                tcoSit TinyInt Not Null,
+                tcoDca DateTime Not Null,
+                tcoDfi DateTime Default Null,
+                Primary Key (codTco)
+            );
+            Create Table tServico (
+                codSer Int Not Null Identity,
+                serNom Varchar (100) Not Null,
+                serSit TinyInt Not Null,
+                setDca DateTime Not Null,
+                serDfi DateTime Null,
+                codTco Int Not Null,
+                codLoc Int Not Null,
+                Primary Key (codSer)
+            );
+            Create Table tOrdemServico (
+                codOds Int Not Null Identity,
+                odsTit Varchar (100) Not Null,
+                odsAss Varchar (300) Not Null,
+                odsTel Int Not Null,
+                odsDab DateTime Not Null,
+                odsDag DateTime Default Null,
+                odsDen DateTime Default Null,
+                codLoc Int Not Null,
+                codAtd Int Not Null,
+                codEst Int Not Null,
+                codPrd Int Not Null,
+                codEmp Int Not Null,
+                codCli Int Not Null,
+                codCar Int Not Null,
+                codSer Int Not Null,
+                Primary Key (codOds)
+            );
+            Create Table tComentario (
+                codOds Int Not Null,
+                codUsu Int Not Null,
+                codAnx Int Default Null,
+                comDes Varchar (300) Not Null,
+                comDca DateTime Not Null,
+                Primary Key (codAnx, codOds, codUsu)
+            );
+            Create Table tOrcamento (
+                codOrc Int Not Null Identity,
+                orcEmp Varchar (100) Not Null,
+                codCop Int Not Null,
+                Primary Key (codOrc)
+            );
+            Create Table tCompra (
+                codCop Int Not Null Identity,
+                copTit Varchar(100) Not Null,
+                copAss Varchar(300) Not Null,
+                copTel Int Not Null,
+                copDab DateTime Not Null,
+                copDag DateTime Default Null,
+                copDen DateTime Default Null,
+                codAtd Int Not Null,
+                codSer Int Not null,
+                codEst Int Not Null,
+                codPrd Int Not Null,
+                codEmp Int Not null,
+                codLoc Int Not Null,
+                codCli Int Not Null,
+                codCar Int Not Null,
+                PRIMARY KEY (codCop)
+            );
+            Alter table tUsuario Add Constraint FK_tUsuario_tCargo Foreign Key (codCar) References tCargo (codCar);
+            Alter table tUsuario Add Constraint FK_tUsuario_tLocal Foreign Key (codLoc) References tLocal (codLoc);
+            Alter table tUsuario Add Constraint FK_tUsuario_tEmpresa Foreign Key (codEmp) References tEmpresa (codEmp);
+            Alter table tUsuario Add Constraint FK_tUsuario_tSituacao Foreign Key (codSit) References tSituacao (codSit);
+            ALter Table tServico Add Constraint FK_tServico_tTempoConclusao Foreign Key (codTco) References tTempoConclusao (codTco);
+            ALter Table tServico Add Constraint FK_tServico_tLocal Foreign Key (codLoc) References tLocal (codLoc);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tLocal Foreign Key (codLoc) References tLocal (codLoc);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tUsuario_Atendente Foreign Key (codAtd) References tUsuario (codUsu);
+            Alter table tAnexoOds Add Constraint FK_tAnexoOds_tOrdemServico Foreign Key (codOds) References tOrdemServico (codOds);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tEstado Foreign Key (codEst) References tEstado (codEst);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tPrioridade Foreign Key (codPrd) References tPrioridade (codPrd);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tEmpresa Foreign Key (codEmp) References tEmpresa (codEmp);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tUsuario_Cliente Foreign Key (codCli) References tUsuario (codUsu);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tCargo Foreign Key (codCar) References tCargo (codCar);
+            Alter Table tOrdemServico Add Constraint FK_tOrdemServico_tServico Foreign Key (codSer) References tServico (codSer);
+            Alter Table tComentario Add Constraint FK_tComentario_tOrdemServico Foreign Key (codOds) References tOrdemServico (codOds);
+            Alter Table tComentario Add Constraint FK_tComentario_tUsuario Foreign Key (codUsu) References tUsuario (codUsu);
+            Alter table tComentario Add Constraint FK_tComentario_tAnexoCom Foreign Key (codAnx) References tAnexoCom (codAnx);
+            Alter table tAnexoOrc Add Constraint FK_tAnexoOrc_tOrcamento Foreign Key (codOrc) References tOrcamento (codOrc);
+            Alter Table tCompra Add Constraint FK_tCompra_tUsuario_Atendente Foreign Key (codAtd) References tUsuario (codUsu);
+            Alter Table tCompra Add Constraint FK_tCompra_tServico Foreign Key (codSer) References tServico (codSer);
+            Alter Table tOrcamento Add Constraint FK_tOrcamento_tCompra Foreign Key (codCop) References tCompra (codCop);
+            Alter Table tCompra Add Constraint FK_tCompra_tEstado Foreign Key (codEst) References tEstado (codEst);
+            Alter Table tCompra Add Constraint FK_tCompra_tPrioridade Foreign Key (codPrd) References tPrioridade (codPrd);
+            Alter Table tCompra Add Constraint FK_tCompra_tEmpresa Foreign Key (codEmp) References tEmpresa (codEmp);
+            Alter Table tCompra Add Constraint FK_tCompra_tLocal Foreign Key (codLoc) References tLocal (codLoc);
+            Alter Table tCompra Add Constraint FK_tCompra_tUsuario_Cliente Foreign Key (codCli) References tUsuario (codUsu);
+            Alter Table tCompra Add Constraint FK_tCompra_tCargo Foreign Key (codCar) References tCargo (codCar);
+            Insert into tPerfil Values  ('Administrador',1,GetDate(),null),
+									    ('Cliente',1,GetDate(),null),
+									    ('Atendente',1,GetDate(),null),
+									    ('Cliente-Atendente',1,GetDate(),null);
+            Insert Into tTempoConclusao Values	('1 Hora',1,GetDate(),null),
+            									('5 Horas',1,GetDate(),null),
+            									('1 Dia',1,GetDate(),null),
+            									('3 Dias',1,GetDate(),null),
+            									('1 Semana',1,GetDate(),null);
+            Insert Into tPrioridade Values	('Baixa',1,GetDate(),null),
+            								('Média',1,GetDate(),Null),
+            								('Alta',1,GetDate(),null);
+            Insert into tEstado Values	('Aberto',1,GetDate(),null),
+            							('Em Atendimento',1,GetDate(),null),
+            							('Aguardando Retorno',1,GetDate(),null),
+            							('Resolvido',1,GetDate(),null),
+            							('Fechado',1,GetDate(),null),
+            							('Agendado',1,GetDate(),null),
+            							('Compra Efetuada',1,GetDate(),null);
+            Insert Into tSituacao Values	('Trabalhando',1,GetDate(),null),
+            								('Férias',1,GetDate(),null),
+            								('Folga',1,GetDate(),null),
+            								('Demitido',1,GetDate(),null),
+            								('Afastado',1,GetDate(),null),
+            								('Afastado-Licença Médica(15 Dias)',1,GetDate(),null),
+            								('Afastado-Licença Médica(30 Dias)',1,GetDate(),null),
+            								('Afastado-Licença Maternidade',1,GetDate(),null);");
+            $ret = $this -> query($this -> getQuery());
+            $this -> excluirPDO();
+            return $ret;
         }
 
         Private function setQuery($query){

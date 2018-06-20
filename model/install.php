@@ -392,24 +392,23 @@ if($_POST['check']){
             
             // CRIAÇÃO E IMPORTAÇÃO DO BANCO DE DADOS
             require_once '../dao/import.base.php';
+
             $impbase = new ImpBase();
             if($mysql){
-                echo "Criando base Mysql";
-                $impbase = $impbase -> ImpbaseMysql();
+                $msg = $impbase -> ImpbaseMysql();
             }else if($sqlserver){
-                echo "Criando base SQLSERVER";
-                $impbase = $impbase -> ImpbaseSqlserver();
+                $msg = $impbase -> ImpbaseSqlserver();
             }else{
-                // ERRO AO SELECIONAR BASE DE DADOS: Base indefinida
-                echo "Erro";
+                $msg = "<strong>ERRO:</strong> Não foi possivel encontrar a base de dados selecionada (Mysql/SQLServer)";
+                header('location: ../view/form.install.php?ret=5$msg='.$msg);
             }
             // FIM DA CRIAÇÃO E IMPORTAÇÃO
 
             // REDIRECIONAMENTO PARA A TELA DE INFORMAÇÕES SOBRE A EMPRESA
-            if($impbase){
-
+            if($msg == 1){
+                header('location: ');
             }else{
-                
+                header('location: ../view/form.install.php?ret=6$msg='.$msg);
             }
             // FIM DO REDIRECIONAMENTO
         }else{

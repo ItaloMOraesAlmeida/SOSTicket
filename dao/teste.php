@@ -2,4 +2,9 @@
     require_once 'import.base.php';
     
     $e = new ImpBase();
-    $e -> ImpbaseMysql();
+    $t = $e -> ImpbaseMysql();
+    if($t == 1){
+        var_dump($t);
+    }else{
+        var_dump($t);
+    }
