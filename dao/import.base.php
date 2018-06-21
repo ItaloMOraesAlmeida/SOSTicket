@@ -29,6 +29,13 @@
             Create Table If Not Exists sosticket.tEmpresa(
                 codEmp Int Not Null Auto_Increment Comment 'Identificador da empresa',
                 empNom Varchar (100) Not Null Comment 'Nome da empresa',
+                empCnp Varchar (14) Not Null Comment 'CNPJ da empresa',
+                empPai Varchar (50) Not Null Comment 'Pais da empresa estabelecida',
+                empEst Varchar (50) Not Null Comment 'Estado da empresa estabelecida',
+                empCid Varchar (50) Not Null Comment 'Cidade da empresa estabelecida',
+                empCom Varchar (100) Not Null Comment 'Complemento da empresa estabelecida',
+                empCep Varchar (8) Not Null Comment 'CEP da empresa',
+                empTel Varchar (11) Not Null Comment 'Telefone da empresa',
                 empSit TinYInt Not Null Comment 'Situação da empresa',
                 empDca DateTime Not Null Comment 'Data de cadastro da empresa',
                 empDfi DateTime Default Null Comment 'Data de fim da empresa',
@@ -212,11 +219,11 @@
 								                    (Null,'Cliente',1,Now(),Null),
 								                    (Null,'Atendente',1,Now(),Null),
 								                    (Null,'Cliente-Atendente',1,Now(),Null);
-            Insert Into sosticket.tTempoConclusao Values	(Nullull,'1 Hora',1,Now(),Null),
-                                                            (Nullull,'5 Horas',1,Now(),Null),
-                                                            (Nullull,'1 Dia',1,Now(),Null),
-                                                            (Nullull,'3 Dias',1,Now(),Null),
-                                                            (Nullull,'1 Semana',1,Now(),Null);
+            Insert Into sosticket.tTempoConclusao Values	(Null,'1 Hora',1,Now(),Null),
+                                                            (Null,'5 Horas',1,Now(),Null),
+                                                            (Null,'1 Dia',1,Now(),Null),
+                                                            (Null,'3 Dias',1,Now(),Null),
+                                                            (Null,'1 Semana',1,Now(),Null);
             Insert Into sosticket.tPrioridade Values    (Null,'Baixa',1,Now(),Null),
                                                         (Null,'Média',1,Now(),Null),
                                                         (Null,'Alta',1,Now(),Null);
@@ -262,6 +269,13 @@
             Create Table tEmpresa(
                 codEmp Int Not Null Identity,
                 empNom Varchar (100) Not Null,
+                empCnp Varchar (14) Not Null,
+                empPai Varchar (50) Not Null,
+                empEst Varchar (50) Not Null,
+                empCid Varchar (50) Not Null,
+                empCom Varchar (100) Not Null,
+                empCep Varchar (8) Not Null,
+                empTel Varchar (11) Not Null,
                 empSit TinYInt Not Null,
                 empDca DateTime Not Null,
                 empDfi DateTime Default Null,
