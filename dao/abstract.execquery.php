@@ -44,7 +44,7 @@
             $this -> exe = $exe;
         }
 
-        Private function getExe(){
+        Protected Final function getExe(){
             return $this -> exe;
         }
     }

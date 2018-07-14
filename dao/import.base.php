@@ -20,6 +20,7 @@
             );
             Create Table If Not Exists sosticket.tLocal(
                 codLoc Int Not Null Auto_Increment comment 'Identificação do local',
+                codEmp Int Not Null Comment 'Identficação da empresa',
                 locNom Varchar(100) Not Null comment 'Nome do local',
                 locSit TinyInt Not Null comment 'Tipo da situação do local',
                 locDca DateTime Not Null comment 'Data de cadastro do local',
@@ -36,6 +37,7 @@
                 empCom Varchar (100) Not Null Comment 'Complemento da empresa estabelecida',
                 empCep Varchar (8) Not Null Comment 'CEP da empresa',
                 empTel Varchar (11) Not Null Comment 'Telefone da empresa',
+                empAnx Varchar (20) Not Null Comment 'Anexo da logo da empresa',
                 empSit TinYInt Not Null Comment 'Situação da empresa',
                 empDca DateTime Not Null Comment 'Data de cadastro da empresa',
                 empDfi DateTime Default Null Comment 'Data de fim da empresa',
@@ -63,7 +65,7 @@
                 usuSno Varchar (100) Not Null Comment 'Segundo nome do usuário',
                 usuEma Varchar (150) Not Null Comment 'Email do usuário',
                 usuLog Varchar (100) Not Null Comment 'Login do usuário',
-                UsuSen Varchar (100) Not Null Comment 'Senha do usuário',
+                usuSen Varchar (100) Not Null Comment 'Senha do usuário',
                 usuCpf Varchar (11) Not Null Comment 'CPF do usuário',
                 usuDna DateTime Not Null Comment 'Data de nascimento do usuário',
                 usuTel Int Not Null Comment 'Número do telefone do usuário',
@@ -131,7 +133,7 @@
                 codSer Int Not Null Auto_Increment Comment 'Identificador do tempo de serviço',
                 serNom Varchar (100) Not Null Comment 'Nome do tempo de serviço',
                 serSit TinyInt Not Null Comment 'Situação do serviço',
-                setDca DateTime Not Null Comment 'Data de cadstro do serviço',
+                serDca DateTime Not Null Comment 'Data de cadstro do serviço',
                 serDfi DateTime Null Comment 'Data de fim do serviço',
                 codTco Int Not Null Comment 'Identificador do tempo de conclusão',
                 codLoc Int Not Null Comment 'Identificado do local do serviço',
@@ -187,6 +189,7 @@
                 codCar Int Not Null Comment 'Identificador do cargo do cliente da compra',
                 Primary Key (codCop)
             );
+            Alter Table sosticket.tLocal Add Constraint FK_tLocal_tEmpresa Foreing Key (codEmp) References sosticket.tEmpresa (codEmp);
             Alter Table sosticket.tUsuario Add Constraint FK_tUsuario_tCargo Foreign Key (codCar) References sosticket.tCargo (codCar);
             Alter Table sosticket.tUsuario Add Constraint FK_tUsuario_tLocal Foreign Key (codLoc) References sosticket.tLocal (codLoc);
             Alter Table sosticket.tUsuario Add Constraint FK_tUsuario_tEmpresa Foreign Key (codEmp) References sosticket.tEmpresa (codEmp);
@@ -260,6 +263,7 @@
             );
             Create Table tLocal(
                 codLoc Int Not Null Identity,
+                codEmp Int Not Null,
                 locNom Varchar(100) Not Null,
                 locSit TinyInt Not Null,
                 locDca DateTime Not Null,
@@ -276,6 +280,7 @@
                 empCom Varchar (100) Not Null,
                 empCep Varchar (8) Not Null,
                 empTel Varchar (11) Not Null,
+                empAnx Varchar (20) Not Null,
                 empSit TinYInt Not Null,
                 empDca DateTime Not Null,
                 empDfi DateTime Default Null,
@@ -303,7 +308,7 @@
                 usuSno Varchar (100) Not Null,
                 usuEma Varchar (150) Not Null,
                 usuLog Varchar (100) Not Null,
-                UsuSen Varchar (100) Not Null,
+                usuSen Varchar (100) Not Null,
                 usuCpf Varchar (11) Not Null,
                 usuDna DateTime Not Null,
                 usuTel Int Not Null,
@@ -371,7 +376,7 @@
                 codSer Int Not Null Identity,
                 serNom Varchar (100) Not Null,
                 serSit TinyInt Not Null,
-                setDca DateTime Not Null,
+                serDca DateTime Not Null,
                 serDfi DateTime Null,
                 codTco Int Not Null,
                 codLoc Int Not Null,
@@ -427,6 +432,7 @@
                 codCar Int Not Null,
                 PRIMARY KEY (codCop)
             );
+            Alter Table tLocal Add Constraint FK_tLocal_tEmpresa Foreing Key (codEmp) References tEmpresa (codEmp);
             Alter table tUsuario Add Constraint FK_tUsuario_tCargo Foreign Key (codCar) References tCargo (codCar);
             Alter table tUsuario Add Constraint FK_tUsuario_tLocal Foreign Key (codLoc) References tLocal (codLoc);
             Alter table tUsuario Add Constraint FK_tUsuario_tEmpresa Foreign Key (codEmp) References tEmpresa (codEmp);
