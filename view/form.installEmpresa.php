@@ -71,7 +71,7 @@ require_once "../dao/class.select.php";
                                             <fieldset>
                                                 <legend>Informações Sobre a Empresa</legend>
                                                 <!-- FORMULÁRIO -->
-                                                <form class="form-horizontal" data-toggle="validator" onsubmit="return false">
+                                                <form id="formularioEmpresa" method="post" enctype="multipart/form-data" action="../model/install.empresa.php?tip=1">
                                                     <label>Nome</label>
                                                     <input class="form-control" type="text" placeholder="Digite o Nome da Empresa" id="empNom" name="empNom"><br>
                                                     <label>CNPJ</label>
@@ -89,11 +89,12 @@ require_once "../dao/class.select.php";
                                                     <label>Telefone</label>
                                                     <input class="form-control" type="numeric" placeholder="Digite o Telefone da Empresa" id="empTel" name="empTel" maxlength="11" ><br>
                                                     <label>Logo da Empresa</label>
-                                                    <input class="form-control" type="file" placeholder="teste" id="empLogo" name="MAX_FILE_SIZE" value="2097152" ><br> <!-- "VALUE" equivalente a 2M para o tamanho maximo do arquivo -->
+                                                    <input class="form-control" type="file" id="empLogo" name="empLogo" ><br>
 
                                                     <div>
-                                                        <input type="button" class="btn btn-inverse btn-site" name="btnSavDadosEmp" id="btnSavDadosEmp" onclick="ajaxPost('../model/install.empresa.php?tip=1', '#retornos')" value="Salvar">
+                                                        <input type="button" class="btn btn-inverse btn-site" name="btnSavDadosEmp" id="btnSavDadosEmp" value="Salvar">
                                                     </div>
+                                                </form>
                                             </fieldset>
                                             <!-- FIM COL EMPRESA -->
                                         </div>
@@ -103,6 +104,8 @@ require_once "../dao/class.select.php";
                                             <fieldset>
                                                     <legend>Setores</legend>
                                                     <label>Empresa</label>
+                                                <!-- FORMULÁRIO DADOS DO SISTEMA-->
+                                                <form class="form-horizontal" data-toggle="validator" onsubmit="return false">
 
                                                     <select class="form-control" id="empresaEmpresa" name="empresaEmpresa">
                                                         <option>Selecione a Empresa...</option>
@@ -412,6 +415,9 @@ require_once "../dao/class.select.php";
     <!--JavaScript-->
     <script type="text/javascript" src="../resources/js/jquery.js"></script>
     <script type="text/javascript" src="../resources/js/post.js"></script>
+    <script type="text/javascript" src="../resources/js/jquery_3.js"></script> 
+    <script type="text/javascript" src="../resources/js/jquery.form.js"></script>
+    <script type="text/javascript" src="../resources/js/newPost.js"></script>
     <script type="text/javascript" src="../resources/js/bootstrap.js"></script>
     <script type="text/javascript" src="../resources/js/index.js"></script>
     

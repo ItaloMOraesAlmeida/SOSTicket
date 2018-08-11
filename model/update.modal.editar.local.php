@@ -1,7 +1,7 @@
 <?php
 require_once "../dao/class.update.php";
 
-$updateLocal = new update('tLocal',"codEmp=".$_POST['ModalempresaEmpresa'].",locNom='".$_POST['ModalempLoc']."',locDca=Now()",'codLoc='.$_POST['ModalIdLocal']);
+$updateLocal = new update('tLocal',"codEmp=".$_POST['ModalempresaEmpresa'].",locNom='".$_POST['ModalempLoc']."',locDca=".date('Y-m-d H:i:s'),'codLoc='.$_POST['ModalIdLocal']);
 $array = $updateLocal -> getUpdate();
 if($array['val'] == 1){
     echo '  <div class="alert alert-success">
