@@ -24,17 +24,19 @@ if (file_exists('view/form.install.php')){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOSTicket</title>
 
-    <!-- RESOUCERS -->
+    <!-- RESOURCES -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="resoucers/js/bootstrap.min.js"></script>
-    <script src="resoucers/js/jquery.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/jquery.min.js"></script>
+    <script src="resources/js/post.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/login.css">
 </head>
 <body>
     <section style="height: 100vh;">
         <div style="background-attachment: fixed; background-size: cover; width: 100%; height: 100%; position: fixed;"  >
             <div class="main">
-                <form action="login" method="post">
+                <div id="retornos"></div>
+                <form class="form-horizontal" data-toggle="validator" onsubmit="return false">
                     <h1><span>SOSTicket</span></h1>
                     <div class="login-wrap">
                         <div class="login-html">
@@ -44,18 +46,18 @@ if (file_exists('view/form.install.php')){
                                 <div class="sign-in-htm">
                                     <div class="group">
                                         <label for="user" class="label">Usuário</label>
-                                        <input id="user" type="text" class="input">
+                                        <input id="logUser" name="logUser" type="text" class="input">
                                     </div>
                                     <div class="group">
                                         <label for="pass" class="label">Senha</label>
-                                        <input id="pass" type="password" class="input" data-type="password">
+                                        <input id="logPass" name="logPass" type="password" class="input" data-type="password">
                                     </div>
                                     <div class="group">
                                         <input id="check" type="checkbox" class="check" checked>
                                         <label for="check"><span class="icon"></span> Lembrar Senha</label>
                                     </div>
                                     <div class="group">
-                                        <input type="submit" class="button" value="Entrar">
+                                        <input type="button" class="button" name="btnLogUsu" id="btnLogUsu" onclick="ajaxPost('model/class.login.php', '#retornos')" value="Entrar">
                                     </div>
                                     <div class="hr"></div>
                                     <div class="foot-lnk">

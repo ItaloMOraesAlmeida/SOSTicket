@@ -9,6 +9,7 @@
         Private $juncao;
         Private $condicao;
         Private $ret;
+        Private $linhas;
         Private $retselect;
 
         public function __construct($colunas,$tabela,$juncao,$condicao){
@@ -38,6 +39,7 @@
             //var_dump($select);
             $this -> ret = $this -> query($select);
             $this -> setSelect($this -> getExe());
+            $this -> setLinhas($this -> getExe() -> rowCount());
             $this -> excluirPDO();
         }
 
@@ -51,6 +53,22 @@
             }else{
                 return ["msg" => $this -> ret, "val" => 0];
             }
+        }
+
+        Public function getSelectQtdLinhas(){
+            if($this -> ret == 1){
+                return ["msg" => $this -> getLinhas(), "val" => 1];
+            }else{
+                return ["msg" => $this -> ret, "val" => 0];
+            }
+        }
+
+        Private function setLinhas($linhas){
+            $this -> linhas = $linhas;
+        }
+
+        Private function getLinhas(){
+            return $this -> linhas;
         }
 
         Private function setColunas($colunas){

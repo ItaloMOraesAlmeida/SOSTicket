@@ -46,7 +46,7 @@
                         $this -> setPassworddb("Italaquimaso1");
                         $this -> setIsdbsqlserver(0); // Autenticação pelo SQLSERVER
                         $this -> setIsdbmysql(1); // Autenticação pelo MYSQL
-                        $this -> setIsconnectionad(1); // Autenticação pelo Activite Directory
+                        $this -> setIsconnectionad(0); // Autenticação pelo Activite Directory
                     }
 
                     public function setBasedb($base){

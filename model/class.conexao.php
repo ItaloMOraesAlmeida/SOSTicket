@@ -20,6 +20,7 @@
 
     require_once 'class.conectores.php';
     require_once '../controller/interface.conn.php';
+    require_once '../dao/class.select.php';
 
     class Conexao implements Conn{
         Private $conect;
@@ -98,18 +99,12 @@
         }
 
         Private function autenticarMysql(){ // Autenticação do usuário pelo MYSQL
-            $this -> conectarDb();
-            $query = $this -> getPdo() -> prepare("Select usuario From sosticket.usuario Where usuario = '".$this ->getUsernameaudb()."' And senha = '".md5($this -> getPasswordaudb())."'");
-            //$select = new Select('','usuario','usuario','usuario = '.$this ->getUsernameaudb().' And senha = '.md5($this -> getPasswordaudb()),'');
-            //$query = $this -> getPdo() -> prepare($select -> getSelect());
-            $query -> execute();
-            $linhas = $query -> rowCount();
+            $select = new Select("usuLog","tUsuario",Null,"usuLog = '".$this ->getUsernameaudb()."' And usuSen = '".md5($this -> getPasswordaudb())."'");
             
-            $this -> excluirPDO();
-            if($linhas == 1){
-                return true;
+            if($select->getSelectQtdLinhas()['msg'] == 1){
+                return 1;
             }else{
-                return false;
+                return 0;
             }
         }
 
