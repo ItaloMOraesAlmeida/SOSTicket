@@ -3,11 +3,16 @@
 <?php
 // Verificação do formulário de instalação!
 
-$filename = 'view/form.install.php';
-if (file_exists($filename)) {
-    header('location: '.$filename);
+if (file_exists('view/form.install.php')){
+    header('location: view/form.install.php');
     die;
-} else {
+} else if(file_exists('view/form.installEmpresa.php')){
+    header('location: view/form.installEmpresa.php');
+    die;
+} else if(file_exists('view/form.install.adm.php')){
+    header('location: view/form.install.adm.php');
+    die;
+} else{
 
 ?>
 

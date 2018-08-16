@@ -13,7 +13,8 @@ $Insert = new Insert('tUsuario','',"'".$nomAdm."','".$sobAdm."','".$emaAdm."','"
 $array = $Insert -> getInsert();
 
 if($array['val'] == 1){
-    
+    rename('conclusao.instavacao.php','conclusao.instalacao.conf.php');
+    header('location: ../index.php');
 }else{
     echo '  <div class="alert alert-danger">'
                 .$array['msg'].

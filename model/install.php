@@ -368,6 +368,7 @@ if($_POST['check']){
 
             // REDIRECIONAMENTO PARA A TELA DE INFORMAÇÕES SOBRE A EMPRESA
             if($msg == 1){
+                rename('install.php','install.conf.php');
                 header('location: ../view/form.installEmpresa.php');
             }else{
                 header('location: ../view/form.install.php?ret=6$msg='.$msg);

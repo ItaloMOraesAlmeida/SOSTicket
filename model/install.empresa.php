@@ -29,6 +29,7 @@ switch ($_GET['tip']) {
         $Insert = new Insert('tServico','',"'".$_POST['empServ']."',1,'$date',Null,".$_POST['tempoConclusaoEmpresa'].",".$_POST['setorEmpresa']."");
         break;
     case 6:
+        rename('install.empresa.php','install.empresa.conf.php');
         header('Location: ../view/form.install.adm.php');
         break;
     default:
